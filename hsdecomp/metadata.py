@@ -56,7 +56,7 @@ def read_settings(opts):
     symtab = elffile.get_section_by_name('.symtab')
     for sym in symtab.iter_symbols():
         try:
-            name = str(sym.name)
+            name = sym.name
             offset = sym['st_value']
             settings.name_to_address[name] = offset
             settings.address_to_name[offset] = name

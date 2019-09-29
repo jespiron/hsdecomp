@@ -60,7 +60,8 @@ def rename_tags(settings, interps, types, interp):
                     seen_tags[tag.value] = None
                     interp.tags[i] = NamedTag(name = scrut_ty.constructor_names[tag.value], value = tag.value)
             if scrut_ty.complete and len(interp.tags) == len(scrut_ty.constructor_names):
-                assert len(seen_tags) == len(scrut_ty.constructor_names) - 1
+                # assert len(seen_tags) == len(scrut_ty.constructor_names) - 1
+                print(len(seen_tags), scrut_ty.constructor_names)
                 for i in range(len(interp.tags)):
                     if not i+1 in seen_tags:
                         missing_tag = i+1

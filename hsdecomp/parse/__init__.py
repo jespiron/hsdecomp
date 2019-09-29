@@ -96,7 +96,9 @@ def gather_case_arms(settings, heaps, address, min_tag, max_tag, initial_stack, 
     mach.simulate(first_instructions)
 
     if first_instructions[-2].mnemonic == 'cmp' and isinstance(mach.load(first_instructions[-2].operands[0]), Tagged) and isinstance(mach.load(first_instructions[-2].operands[0]).untagged, Offset) and isinstance(mach.load(first_instructions[-2].operands[0]).untagged.base, CasePointer) and first_instructions[-2].operands[1].type == capstone.x86.X86_OP_IMM:
-        assert first_instructions[-1].mnemonic == 'jae'
+        # assert first_instructions[-1].mnemonic == 'jae'
+        assert first_instructions[-1].mnemonic == 'jae' or first_instructions[-1].mnemonic == 'jne'
+        print(first_instructions[-1].mnemonic)
         small_address = sum(map(lambda insn: insn.size, first_instructions)) + address
         large_address = first_instructions[-1].operands[0].imm
 
